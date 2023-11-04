@@ -31,9 +31,18 @@ require('lazy').setup({
     },
   },
   {
+    "xiyaowong/transparent.nvim",
+    config = function()
+      require("transparent").setup({
+--        enable = true,
+        value = 20,
+      })
+    end,
+  },
+  {
     'norcalli/nvim-colorizer.lua',
     event = 'BufRead',
-    config = function()
+  config = function()
     require('colorizer').setup()
     end,
   },
@@ -157,6 +166,7 @@ require('lazy').setup({
 --set stuff
 vim.o.cursorline = true
 vim.o.hlsearch = false
+--vim.o.guicursor = 'i:5'
 vim.o.relativenumber = true
 vim.o.mouse = 'a'
 vim.o.clipboard = 'unnamedplus'
@@ -173,6 +183,7 @@ vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 vim.keymap.set('n', '<leader>b', ':Ex<CR>', {silent = true, desc = "Back To NETRW"})
+vim.keymap.set('n', '<leader>t', ':TransparentToggle<CR>', {silent = true, desc = "Transparent Toggle"})
 local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
 vim.api.nvim_create_autocmd('TextYankPost', {
   callback = function()
